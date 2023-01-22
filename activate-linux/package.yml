@@ -1,9 +1,10 @@
 name       : activate-linux
-version    : 0.0.2
-release    : 2
+version    : 1.0.0
+release    : 3
 source     :
-    - https://github.com/MrGlockenspiel/activate-linux/archive/refs/tags/v0.0.2.tar.gz : d6235b9d13bd896a130a83cc6d882da677fb19edb5a76735453b866aa0e7690d
+    - https://github.com/MrGlockenspiel/activate-linux/archive/refs/tags/v1.0.0.tar.gz : 3698f4e925045cce7f65c2d54cf16d770158a70e4e39ca270d335a3f5fd3d27a
 license    : GPL-3.0-or-later
+homepage   : https://github.com/MrGlockenspiel/activate-linux
 component  : desktop
 summary    : The "Activate Windows" watermark ported to Linux
 clang      : yes
@@ -13,8 +14,16 @@ builddeps  :
     - pkgconfig(cairo)
     - pkgconfig(x11)
     - pkgconfig(xi)
+    - pkgconfig(xt)
     - pkgconfig(xinerama)
+    - pkgconfig(xrandr)
+    #- pkgconfig(wayland-protocols)
+    - pkgconfig(xfixes)
+    #- wayland-devel
+    - libx11-devel
+    #- pkgconfig(libconfig)
 build      : |
-    %make 
+    
+    %make backends=x11
 install    : |
     %make_install PREFIX=/usr/
